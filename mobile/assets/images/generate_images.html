@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>蓝书应用资源图片生成器</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        canvas {
+            border: 1px solid #ccc;
+            margin: 10px 0;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #1DA1F2;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .image-container {
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <h1>蓝书应用资源图片生成器</h1>
+    <p>点击下面的按钮生成并下载默认图片资源</p>
+
+    <div class="image-container">
+        <h2>默认头像 (default-avatar.png)</h2>
+        <canvas id="avatarCanvas" width="192" height="192"></canvas><br>
+        <button onclick="generateAvatar()">生成头像</button>
+        <button onclick="downloadAvatar()">下载头像</button>
+    </div>
+
+    <div class="image-container">
+        <h2>应用LOGO (logo.png)</h2>
+        <canvas id="logoCanvas" width="512" height="512"></canvas><br>
+        <button onclick="generateLogo()">生成LOGO</button>
+        <button onclick="downloadLogo()">下载LOGO</button>
+    </div>
+
+    <div class="image-container">
+        <h2>默认游记封面 (default-travel.jpg)</h2>
+        <canvas id="travelCanvas" width="640" height="360"></canvas><br>
+        <button onclick="generateTravel()">生成游记封面</button>
+        <button onclick="downloadTravel()">下载游记封面</button>
+    </div>
+
+    <script>
+        // 生成默认头像
+        function generateAvatar() {
+            const canvas = document.getElementById('avatarCanvas');
+            const ctx = canvas.getContext('2d');
+            
+            // 清空画布
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // 绘制圆形背景
+            ctx.fillStyle = '#1DA1F2';
+            ctx.beginPath();
+            ctx.arc(canvas.width/2, canvas.height/2, canvas.width/2, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // 绘制简单的人物剪影
+            ctx.fillStyle = 'white';
+            // 头部
+            ctx.beginPath();
+            ctx.arc(canvas.width/2, canvas.height/2 - 15, 40, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // 身体
+            ctx.beginPath();
+            ctx.moveTo(canvas.width/2 - 50, canvas.height/2 + 60);
+            ctx.quadraticCurveTo(canvas.width/2, canvas.height/2 + 120, canvas.width/2 + 50, canvas.height/2 + 60);
+            ctx.fill();
+        }
+
+        // 生成LOGO
+        function generateLogo() {
+            const canvas = document.getElementById('logoCanvas');
+            const ctx = canvas.getContext('2d');
+            
+            // 清空画布
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // 绘制圆形背景
+            ctx.fillStyle = '#1DA1F2';
+            ctx.beginPath();
+            ctx.arc(canvas.width/2, canvas.height/2, canvas.width/2, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // 绘制书本图标
+            ctx.fillStyle = 'white';
+            
+            // 书本封面
+            ctx.beginPath();
+            ctx.moveTo(170, 150);
+            ctx.lineTo(170, 350);
+            ctx.lineTo(340, 330);
+            ctx.lineTo(340, 130);
+            ctx.closePath();
+            ctx.fill();
+            
+            // 书本内页
+            ctx.fillStyle = '#f0f0f0';
+            ctx.beginPath();
+            ctx.moveTo(340, 130);
+            ctx.lineTo(340, 330);
+            ctx.lineTo(360, 310);
+            ctx.lineTo(360, 110);
+            ctx.closePath();
+            ctx.fill();
+            
+            // 添加文字
+            ctx.fillStyle = '#1DA1F2';
+            ctx.font = 'bold 60px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('蓝书', 255, 250);
+        }
+
+        // 生成默认游记封面
+        function generateTravel() {
+            const canvas = document.getElementById('travelCanvas');
+            const ctx = canvas.getContext('2d');
+            
+            // 清空画布
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // 绘制渐变背景
+            const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+            gradient.addColorStop(0, '#87CEEB');
+            gradient.addColorStop(1, '#1DA1F2');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // 绘制山脉
+            ctx.fillStyle = '#234567';
+            ctx.beginPath();
+            ctx.moveTo(0, 280);
+            ctx.lineTo(150, 200);
+            ctx.lineTo(280, 250);
+            ctx.lineTo(400, 180);
+            ctx.lineTo(550, 220);
+            ctx.lineTo(640, 200);
+            ctx.lineTo(640, 360);
+            ctx.lineTo(0, 360);
+            ctx.closePath();
+            ctx.fill();
+            
+            // 绘制太阳
+            ctx.fillStyle = '#FFDD00';
+            ctx.beginPath();
+            ctx.arc(500, 80, 40, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // 添加文字
+            ctx.fillStyle = 'white';
+            ctx.font = 'bold 36px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('蓝书游记', canvas.width/2, canvas.height/2 + 50);
+        }
+
+        // 下载头像
+        function downloadAvatar() {
+            const canvas = document.getElementById('avatarCanvas');
+            const link = document.createElement('a');
+            link.download = 'default-avatar.png';
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+
+        // 下载LOGO
+        function downloadLogo() {
+            const canvas = document.getElementById('logoCanvas');
+            const link = document.createElement('a');
+            link.download = 'logo.png';
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+
+        // 下载游记封面
+        function downloadTravel() {
+            const canvas = document.getElementById('travelCanvas');
+            const link = document.createElement('a');
+            link.download = 'default-travel.jpg';
+            link.href = canvas.toDataURL('image/jpeg', 0.9);
+            link.click();
+        }
+
+        // 自动生成所有图片
+        window.onload = function() {
+            generateAvatar();
+            generateLogo();
+            generateTravel();
+        };
+    </script>
+</body>
+</html> 

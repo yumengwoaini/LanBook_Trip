@@ -1,0 +1,75 @@
+.admin-layout {
+  min-height: 100vh;
+}
+
+.logo {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.logo h1 {
+  color: white;
+  font-size: 20px;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.admin-header {
+  background: #fff;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+  position: relative;
+  z-index: 1;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 0 12px;
+  transition: background 0.3s;
+  border-radius: 4px;
+}
+
+.user-info:hover {
+  background: rgba(0, 0, 0, 0.025);
+}
+
+.username {
+  margin: 0 8px;
+  color: rgba(0, 0, 0, 0.85);
+}
+
+.role-badge {
+  font-size: 12px;
+  background-color: var(--primary-light);
+  color: var(--primary-color);
+  padding: 2px 6px;
+  border-radius: 2px;
+}
+
+.admin-content {
+  margin: 24px;
+  overflow: auto;
+  background: white;
+  padding: 24px;
+  min-height: 280px;
+  border-radius: 2px;
+}
+
+.toggle-button {
+  font-size: 18px;
+  width: 48px;
+  height: 48px;
+} 

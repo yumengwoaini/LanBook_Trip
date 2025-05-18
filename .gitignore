@@ -1,0 +1,43 @@
+# 依赖
+node_modules/
+/.pnp
+.pnp.js
+
+# 测试
+/coverage
+
+# 生产
+/build
+/dist
+
+# 杂项
+.DS_Store
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# 日志
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# 编辑器
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# 上传文件
+/server/uploads/*
+!/server/uploads/images/
+!/server/uploads/videos/
+!/server/uploads/avatars/
+/server/uploads/images/*
+/server/uploads/videos/*
+/server/uploads/avatars/*
+# 保持目录结构
+!/server/uploads/images/.gitkeep
+!/server/uploads/videos/.gitkeep
+!/server/uploads/avatars/.gitkeep 
